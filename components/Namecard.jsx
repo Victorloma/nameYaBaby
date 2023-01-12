@@ -15,9 +15,9 @@ const Namecard = () => {
   }
 
   return (
-    <main className='drop-shadow-2xl h-[60vh] w-[80vw] md:w-[50vw] lg:w-[35vw] bg-slate-300 rounded-lg overflow-hidden'>
+    <main className='drop-shadow-2xl h-[60vh] w-[80vw] md:w-[50vw] lg:w-[35vw] bg-slate-300 bg-opacity-30 rounded-lg overflow-hidden'>
       <article className='flex flex-col items-center justify-around h-[100%] w-[100%]'>
-        <h2 className='shadow-md rounded-full px-8 py-2 bg-slate-300 font-medium text-gray-700 text-center text-6xl'>
+        <h2 className='shadow-md rounded-full px-8 py-2 bg-slate-300 bg-opacity-40 font-medium text-gray-700 text-center text-6xl'>
           {randomName}
         </h2>
         <div className='flex justify-around w-[100%]'>
