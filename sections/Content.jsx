@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 import { rotateIn } from '../utils/motion'
 
 import Namecard from '../components/Namecard'
+import Menu from '../components/Menu'
+import Signin from '../components/SignIn'
+import Register from '../components/Register'
 
 const Content = () => {
   return (
