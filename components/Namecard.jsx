@@ -13,7 +13,6 @@ const Namecard = () => {
   const getNewName = () => {
     refetch()
   }
-  // shadow-md rounded-full px-8 py-2 bg-slate-300 bg-opacity-40 font-medium text-gray-700 text-center text-6xl
   return (
     <main className='shadow-2xl h-[60vh] w-[80vw] md:w-[50vw] lg:w-[35vw] bg-white bg-opacity-20 rounded-lg overflow-hidden relative z-2 border-slate-100 border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm'>
       <article className='flex flex-col items-center justify-around h-[100%] w-[100%]'>

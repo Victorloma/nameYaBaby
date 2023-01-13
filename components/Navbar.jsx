@@ -61,14 +61,6 @@ const Navbar = () => {
           />
         </div>
         <img src='/menu.svg' alt='menu' className='' />
-        {/* <menu className='text-white hidden md:flex gap-4 ml-[-100px]'>
-          <li className='cursor-pointer opacity-80 hover:opacity-100'>
-            Sign in
-          </li>
-          <li className='cursor-pointer opacity-80 hover:opacity-100'>
-            Register
-          </li>
-        </menu> */}
       </div>
     </motion.nav>
   )
