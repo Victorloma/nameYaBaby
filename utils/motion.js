@@ -120,6 +120,24 @@ export const rotateIn = (direction) => ({
       delay: 0.3,
     },
   },
+  yes: {
+    x: '100%',
+    rotate: 30,
+    transition: {
+      type: 'spring',
+      duration: 1.5,
+      delay: 0.3,
+    },
+  },
+  no: {
+    x: '-100%',
+    rotate: 30,
+    transition: {
+      type: 'spring',
+      duration: 1.5,
+      delay: 0.3,
+    },
+  },
 })
 
 export const zoomIn = (delay, duration) => ({

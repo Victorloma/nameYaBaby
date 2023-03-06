@@ -3,15 +3,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useGetNewNameQuery } from '../redux/features/api/apiSlice'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { selectGender } from '../redux/selectors'
+import { setShowNamecard } from '../redux/namecardSlice'
 
 const Namecard = () => {
+  const dispatch = useDispatch()
+
   const gender = useSelector(selectGender)
   const { data: randomName, refetch } = useGetNewNameQuery(gender)
 
-  const getNewName = () => {
-    refetch()
+  const getNewName = (action) => {
+    dispatch(setShowNamecard(action))
+
+    setTimeout(() => dispatch(setShowNamecard('show')), 1200)
+    setTimeout(() => refetch(), 400)
   }
   return (
     <main className='shadow-2xl h-[60vh] w-[80vw] md:w-[50vw] lg:w-[35vw] bg-white bg-opacity-20 rounded-lg overflow-hidden relative z-2 border-slate-100 border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm'>
@@ -22,13 +28,13 @@ const Namecard = () => {
         <div className='flex justify-around w-[100%]'>
           <button
             className='shadow-md bg-red-500 hover:bg-red-600 active:bg-red-700 p-6 rounded-full text-white'
-            onClick={() => getNewName()}
+            onClick={() => getNewName('no')}
           >
             <FontAwesomeIcon icon={faXmark} size='3x' className='h-5 w-12' />
           </button>
           <button
             className='shadow-md bg-green-500 hover:bg-green-600 active:bg-green-700 p-6 rounded-full text-white '
-            onClick={() => getNewName()}
+            onClick={() => getNewName('yes')}
           >
             <FontAwesomeIcon icon={faCheck} size='3x' />
           </button>

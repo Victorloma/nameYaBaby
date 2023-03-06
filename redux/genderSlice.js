@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  showGender: 'F',
+  showGender: '*',
 }
 
 export const genderSlice = createSlice({

@@ -9,12 +9,19 @@ import Menu from '../components/Menu'
 import Signin from '../components/SignIn'
 import Register from '../components/Register'
 
+import { useSelector } from 'react-redux'
+import { selectNamecard } from '../redux/selectors'
+
 const Content = () => {
+  const showNamecard = useSelector(selectNamecard)
+  console.log(showNamecard)
   return (
     <motion.div
       variants={rotateIn('right')}
       initial='hidden'
-      whileInView='show'
+      whileInView={`${
+        showNamecard === 'yes' ? 'yes' : showNamecard === 'no' ? 'no' : 'show'
+      }`}
       className='w-full h-[70%] sm:h-[70vh] flex justify-center items-center'
     >
       <Namecard />
