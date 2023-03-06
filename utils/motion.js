@@ -108,34 +108,34 @@ export const fadeIn = (direction, type, delay, duration) => ({
 
 export const rotateIn = (direction) => ({
   hidden: {
-    x: direction === 'left' ? '-100%' : '100%',
-    rotate: 30,
+    x: direction === 'left' ? '-110%' : '110%',
+    rotate: 20,
   },
   show: {
     x: 0,
     rotate: 0,
     transition: {
       type: 'spring',
-      duration: 1.5,
-      delay: 0.3,
+      duration: 0.7,
+      delay: 0,
     },
   },
   yes: {
-    x: '100%',
-    rotate: 30,
+    x: '110%',
+    rotate: 20,
     transition: {
       type: 'spring',
-      duration: 1.5,
-      delay: 0.3,
+      duration: 0.7,
+      delay: 0,
     },
   },
   no: {
-    x: '-100%',
-    rotate: 30,
+    x: '-110%',
+    rotate: 10,
     transition: {
       type: 'spring',
-      duration: 1.5,
-      delay: 0.3,
+      duration: 0.7,
+      delay: 0,
     },
   },
 })

@@ -14,7 +14,7 @@ import { selectNamecard } from '../redux/selectors'
 
 const Content = () => {
   const showNamecard = useSelector(selectNamecard)
-  console.log(showNamecard)
+
   return (
     <motion.div
       variants={rotateIn('right')}
