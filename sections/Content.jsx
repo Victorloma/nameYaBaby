@@ -34,11 +34,11 @@ const Content = () => {
       drag='x'
       dragConstraints={{ left: 0, right: 0 }}
       whileDrag={{ rotate: 10 }}
-      dragElastic={0.8}
+      dragElastic={1.6}
       onDragEnd={(event, info) => {
-        if (info.offset.x > 200) {
+        if (info.offset.x > 100) {
           getNewName('yes')
-        } else if (info.offset.x < -200) {
+        } else if (info.offset.x < -100) {
           getNewName('no')
         }
       }}
