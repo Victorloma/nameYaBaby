@@ -3,8 +3,25 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Content from '../sections/Content'
+import { useSession } from '@supabase/auth-helpers-react'
+import Signin from '../components/SignIn'
 
 export default function Home() {
+  const session = useSession()
+
+  if (!session) {
+    return (
+      <div className='height relative overflow-hidden w-full h-[100vh] sm:h-[100vh] flex justify-center items-center'>
+        <Signin />
+      </div>
+    )
+  }
+
+  const content = () => {
+    if (!session) {
+      return <Signin />
+    }
+  }
   return (
     <div className=''>
       <Head>
@@ -14,6 +31,7 @@ export default function Home() {
       </Head>
       <div className='height relative overflow-hidden'>
         <Navbar />
+        {/* {content()} */}
         <Content />
         <Footer />
       </div>

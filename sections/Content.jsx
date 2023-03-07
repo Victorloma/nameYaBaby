@@ -17,16 +17,15 @@ import { setShowNamecard } from '../redux/namecardSlice'
 const Content = () => {
   const showNamecard = useSelector(selectNamecard)
   const gender = useSelector(selectGender)
-  const dispatch = useDispatch()
 
   const { refetch } = useGetNewNameQuery(gender)
 
-  const getNewName = (action) => {
-    refetch()
-    // dispatch(setShowNamecard(action))
-
-    // setTimeout(() => dispatch(setShowNamecard('show')), 500)
-    // setTimeout(() => refetch(), 200)
+  const handleDrag = (event, info) => {
+    if (info.offset.x > 100) {
+      refetch()
+    } else if (info.offset.x < -100) {
+      refetch()
+    }
   }
 
   return (
@@ -34,14 +33,8 @@ const Content = () => {
       drag='x'
       dragConstraints={{ left: 0, right: 0 }}
       whileDrag={{ rotate: 10 }}
-      dragElastic={1.6}
-      onDragEnd={(event, info) => {
-        if (info.offset.x > 100) {
-          getNewName('yes')
-        } else if (info.offset.x < -100) {
-          getNewName('no')
-        }
-      }}
+      dragElastic={1}
+      onDragEnd={handleDrag}
       variants={rotateIn('right')}
       initial='hidden'
       whileInView={`${

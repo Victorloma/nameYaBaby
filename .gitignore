@@ -5,3 +5,4 @@ node_modules
 .prettierrc.json
 out
 .env
+.env.local
