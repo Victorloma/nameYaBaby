@@ -1,8 +1,30 @@
 'use client'
 
+import { useState } from 'react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import Link from 'next/link'
 
 const Register = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const supabase = useSupabaseClient()
+
+  const changeEmail = (newEmail) => {
+    setEmail(newEmail)
+  }
+
+  const changePassword = (newPassword) => {
+    setPassword(newPassword)
+  }
+
+  const signUpWithEmail = async (e, email, password) => {
+    e.preventDefault()
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    })
+  }
+
   return (
     <main className='flex justify-center'>
       <div className='shadow-2xl h-[60vh] w-[80vw] md:w-[50vw] lg:w-[35vw] bg-white bg-opacity-20 rounded-lg overflow-hidden relative z-2 border-slate-100 border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm'>
@@ -20,14 +42,19 @@ const Register = () => {
             type='email'
             placeholder='email'
             className='font-poppins bg-transparent border border-t-0 border-l-0 border-r-0 focus:outline-none text-white placeholder:text-slate-200 tracking-wide'
+            onChange={(e) => changeEmail(e.target.value)}
           />
           <input
             type='password'
             placeholder='password'
             className='bg-transparent border border-t-0 border-l-0 border-r-0 focus:outline-none text-white placeholder:text-slate-200 tracking-wide'
+            onChange={(e) => changePassword(e.target.value)}
           />
           <div className='flex-col text-center'>
-            <button className='cursor-pointer font-poppins rounded-full px-5 py-1 bg-white bg-opacity-50 hover:bg-white hover:bg-opacity-80'>
+            <button
+              className='cursor-pointer font-poppins rounded-full px-5 py-1 bg-white bg-opacity-50 hover:bg-white hover:bg-opacity-80'
+              onClick={(e) => signUpWithEmail(e, email, password)}
+            >
               Register
             </button>
             <p className='mt-1 text-sm text-slate-100'>

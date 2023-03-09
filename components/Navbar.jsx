@@ -13,10 +13,16 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { setShowGender } from '../redux/genderSlice'
 import { selectGender } from '../redux/selectors'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 const Navbar = () => {
+  const supabase = useSupabaseClient()
   const dispatch = useDispatch()
   const gender = useSelector(selectGender)
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut()
+  }
 
   return (
     <motion.nav
@@ -60,7 +66,12 @@ const Navbar = () => {
             className='text-white h-5 pl-1 self-center'
           />
         </div>
-        <img src='/menu.svg' alt='menu' className='' />
+        <img
+          src='/menu.svg'
+          alt='menu'
+          className='hover:opacity-75 hover:cursor-pointer'
+          onClick={() => logout()}
+        />
       </div>
     </motion.nav>
   )

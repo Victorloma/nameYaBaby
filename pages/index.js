@@ -3,17 +3,28 @@ import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import Content from '../sections/Content'
-import { useSession } from '@supabase/auth-helpers-react'
+import { useSession, useUser } from '@supabase/auth-helpers-react'
 import MenuPage from './menu'
-import { useSelector } from 'react-redux'
-import { selectMenu } from '../redux/selectors'
-import LoginPage from './login'
-import RegisterPage from './register'
+import supabase from '../config/supabaseClient'
+import { useEffect } from 'react'
 
 export default function Home() {
-  const menu = useSelector(selectMenu)
   const session = useSession()
+  // //const user = useUser()
 
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const {
+  //       data: { user },
+  //     } = await supabase.auth.getUser()
+  //   }
+  //   getData()
+  // }, [])
+
+  // console.log(user)
+
+  // console.log('session ' + session)
+  // console.log('user ' + user)
   if (!session) {
     return <MenuPage />
   }
