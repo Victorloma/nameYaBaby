@@ -1,5 +1,7 @@
 import Head from 'next/head'
+import MenuNavbar from '../components/MenuNavbar'
 import Register from '../components/Register'
+import Footer from '../components/Footer'
 
 export default function RegisterPage() {
   return (
@@ -12,8 +14,10 @@ export default function RegisterPage() {
         />
         <link rel='icon' href='/baby-face-icon.png' />
       </Head>
-      <div className='height relative overflow-hidden w-full h-[100vh] sm:h-[100vh] flex justify-center items-center'>
+      <div className='h-[90vh] flex flex-col justify-between'>
+        <MenuNavbar />
         <Register />
+        <Footer />
       </div>
     </div>
   )
