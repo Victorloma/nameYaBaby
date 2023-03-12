@@ -1,4 +1,3 @@
-import { MiddlewareNotFoundError } from 'next/dist/shared/lib/utils'
 import Head from 'next/head'
 import Footer from '../components/Footer'
 import MenuCard from '../components/MenuCard'
@@ -6,7 +5,7 @@ import MenuNavbar from '../components/MenuNavbar'
 
 export default function MenuPage() {
   return (
-    <div className=''>
+    <div>
       <Head>
         <title>BabyNamer</title>
         <meta
@@ -15,7 +14,7 @@ export default function MenuPage() {
         />
         <link rel='icon' href='/baby-face-icon.png' />
       </Head>
-      <div className='h-[90vh] flex flex-col justify-between'>
+      <div className='h-[100svh] flex flex-col justify-between'>
         <MenuNavbar />
         <MenuCard />
         <Footer />

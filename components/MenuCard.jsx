@@ -30,13 +30,13 @@ const MenuCard = () => {
             Sign up
           </Link>
 
-          <button
-            href=''
+          <Link
+            href='/'
             className='text-white font-poppins text-1xl tracking-widest cursor-pointer hover:border  border-b-0 border-opacity-30 border-slate-100 rounded-full px-10 py-3 hover:bg-white hover:bg-opacity-10'
             onClick={() => handleGuestLogin()}
           >
             Try it out as a guest!
-          </button>
+          </Link>
         </menu>
       </div>
     </main>

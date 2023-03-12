@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 
 export default function LoginPage() {
   return (
-    <div className=''>
+    <div>
       <Head>
         <title>BabyNamer</title>
         <meta
@@ -14,7 +14,7 @@ export default function LoginPage() {
         />
         <link rel='icon' href='/baby-face-icon.png' />
       </Head>
-      <div className='h-[90vh] flex flex-col justify-between'>
+      <div className='h-[100svh] flex flex-col justify-between overflow-hidden'>
         <MenuNavbar />
         <Signin />
         <Footer />

@@ -20,6 +20,7 @@ body {
   height: -moz-available;
   height: -webkit-fill-available;
   height: stretch;
+  height: 100dvh;
 }
 
 a {

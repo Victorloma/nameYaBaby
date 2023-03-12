@@ -17,8 +17,7 @@ const Signin = () => {
     setPassword(newPassword)
   }
 
-  const signInWithEmail = async (e, email, password) => {
-    e.preventDefault()
+  const signInWithEmail = async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -51,12 +50,13 @@ const Signin = () => {
             onChange={(e) => changePassword(e.target.value)}
           />
           <div className='flex-col text-center'>
-            <button
+            <Link
+              href='/'
               className='cursor-pointer font-poppins rounded-full px-5 py-1 bg-white bg-opacity-50 hover:bg-white hover:bg-opacity-80'
-              onClick={(e) => signInWithEmail(e, email, password)}
+              onClick={() => signInWithEmail(email, password)}
             >
               Login
-            </button>
+            </Link>
             <p className='mt-1 text-sm text-slate-100'>
               Don't have an account?{' '}
               <Link href='/register' className='cursor-pointer'>

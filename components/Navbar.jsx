@@ -8,6 +8,7 @@ import {
   faMarsAndVenus,
   faMars,
   faVenus,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -66,10 +67,10 @@ const Navbar = () => {
             className='text-white h-5 pl-1 self-center'
           />
         </div>
-        <img
-          src='/menu.svg'
-          alt='menu'
-          className='hover:opacity-75 hover:cursor-pointer'
+        <FontAwesomeIcon
+          icon={faRightFromBracket}
+          size='2x'
+          className='text-white opacity-75 hover:opacity-100 hover:cursor-pointer'
           onClick={() => logout()}
         />
       </div>
