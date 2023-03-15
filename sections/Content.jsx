@@ -15,16 +15,24 @@ import { useGetNewNameQuery } from '../redux/features/api/apiSlice'
 import { setShowNamecard } from '../redux/namecardSlice'
 
 const Content = () => {
+  const dispatch = useDispatch()
   const showNamecard = useSelector(selectNamecard)
   const gender = useSelector(selectGender)
 
   const { refetch } = useGetNewNameQuery(gender)
 
+  const getNewName = (action) => {
+    dispatch(setShowNamecard(action))
+
+    setTimeout(() => dispatch(setShowNamecard('show')), 500)
+    setTimeout(() => refetch(), 200)
+  }
+
   const handleDrag = (event, info) => {
-    if (info.offset.x > 100) {
-      refetch()
-    } else if (info.offset.x < -100) {
-      refetch()
+    if (info.offset.x > 50) {
+      getNewName('yes')
+    } else if (info.offset.x < -50) {
+      getNewName('no')
     }
   }
 
@@ -33,7 +41,7 @@ const Content = () => {
       drag='x'
       dragConstraints={{ left: 0, right: 0 }}
       whileDrag={{ rotate: 10 }}
-      dragElastic={1}
+      dragElastic={false}
       onDragEnd={handleDrag}
       variants={rotateIn('right')}
       initial='hidden'
