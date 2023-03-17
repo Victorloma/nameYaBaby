@@ -5,27 +5,62 @@ import { motion } from 'framer-motion'
 import { rotateIn } from '../utils/motion'
 
 import Namecard from '../components/Namecard'
-import Menu from '../components/MenuCard'
-import Signin from '../components/SignIn'
-import Register from '../components/Register'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { selectNamecard, selectGender } from '../redux/selectors'
-import { useGetNewNameQuery } from '../redux/features/api/apiSlice'
+import { useGetNewNameQuery } from '../redux/features/api/nameApi'
 import { setShowNamecard } from '../redux/namecardSlice'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const Content = () => {
   const dispatch = useDispatch()
   const showNamecard = useSelector(selectNamecard)
   const gender = useSelector(selectGender)
+  const user = useUser()
+  const supabase = useSupabaseClient()
+  const [savedNames, setSavedNames] = useState([])
 
-  const { refetch } = useGetNewNameQuery(gender)
+  const { data: randomName, refetch } = useGetNewNameQuery(gender)
 
-  const getNewName = (action) => {
+  const getSavedNames = async () => {
+    try {
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+
+      setSavedNames(data.saved_names)
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  useEffect(() => {
+    getSavedNames()
+  }, [])
+
+  const getNewName = async (action) => {
+    if (action === 'yes') {
+      try {
+        let { error } = await supabase.from('profiles').upsert({
+          id: user.id,
+          updated_at: new Date().toISOString(),
+          saved_names: [...savedNames, randomName],
+        })
+        if (error) throw error
+      } catch (error) {
+        alert(error)
+      } finally {
+        getSavedNames()
+      }
+    }
     dispatch(setShowNamecard(action))
 
     setTimeout(() => dispatch(setShowNamecard('show')), 500)
-    setTimeout(() => refetch(), 200)
+    refetch()
   }
 
   const handleDrag = (event, info) => {
@@ -50,7 +85,7 @@ const Content = () => {
       }`}
       className='w-full h-[70%] sm:h-[70vh] flex justify-center items-center'
     >
-      <Namecard />
+      <Namecard getNewName={getNewName} randomName={randomName} />
     </motion.div>
   )
 }

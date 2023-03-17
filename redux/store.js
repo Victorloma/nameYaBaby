@@ -1,16 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { nameApi } from './features/api/apiSlice'
+import { nameApi } from './features/api/nameApi'
 import genderReducer from './genderSlice'
 import namecardReducer from './namecardSlice'
-import menuReducer from './menuSlice'
+import { profileApi } from './features/api/profileApi'
 
 export const store = configureStore({
   reducer: {
     [nameApi.reducerPath]: nameApi.reducer,
+    [profileApi.reducerPath]: profileApi.reducer,
     gender: genderReducer,
     namecard: namecardReducer,
-    menu: menuReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(nameApi.middleware),
+    getDefaultMiddleware()
+      .concat(nameApi.middleware)
+      .concat(profileApi.middleware),
 })

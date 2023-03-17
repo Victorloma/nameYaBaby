@@ -9,8 +9,3 @@ export const selectNamecard = createSelector(
   (state) => state.namecard.showNamecard,
   (namecard) => namecard
 )
-
-export const selectMenu = createSelector(
-  (state) => state.menu.showMenu,
-  (menu) => menu
-)
