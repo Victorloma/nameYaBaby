@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import AuthMenuNavbar from '../components/AuthMenuNavbar'
-import Signin from '../components/SignIn'
 import Footer from '../components/Footer'
+import MenuCard from '../components/AuthMenuCard'
+import MenuNavbar from '../components/AuthMenuNavbar'
 
-export default function LoginPage() {
+export default function AuthMenuPage() {
   return (
     <div>
       <Head>
@@ -15,8 +15,8 @@ export default function LoginPage() {
         <link rel='icon' href='/baby-face-icon.png' />
       </Head>
       <div className='h-[100svh] flex flex-col justify-between overflow-hidden'>
-        <AuthMenuNavbar />
-        <Signin />
+        <MenuNavbar />
+        <MenuCard />
         <Footer />
       </div>
     </div>

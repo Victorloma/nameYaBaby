@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setShowGender } from '../redux/genderSlice'
 import { selectGender } from '../redux/selectors'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import Link from 'next/link'
 
 const Navbar = () => {
   const supabase = useSupabaseClient()
@@ -32,7 +33,7 @@ const Navbar = () => {
       whileInView='show'
       className='pt-8 pb-4 sm:py-10 mx-20'
     >
-      <div className='flex justify-between'>
+      <div className='flex justify-between items-center'>
         <div>
           <FontAwesomeIcon
             icon={faMars}
@@ -67,12 +68,12 @@ const Navbar = () => {
             className='text-white h-5 pl-1 self-center'
           />
         </div>
-        <FontAwesomeIcon
-          icon={faRightFromBracket}
-          size='2x'
-          className='text-white opacity-75 hover:opacity-100 hover:cursor-pointer'
-          onClick={() => logout()}
-        />
+        <Link href='/menu'>
+          <img
+            src='/menu.svg'
+            className='text-white h-5 opacity-75 hover:opacity-100 hover:cursor-pointer'
+          />
+        </Link>
       </div>
     </motion.nav>
   )

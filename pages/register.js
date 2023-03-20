@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import MenuNavbar from '../components/MenuNavbar'
+import AuthMenuNavbar from '../components/AuthMenuNavbar'
 import Register from '../components/Register'
 import Footer from '../components/Footer'
 
@@ -15,7 +15,7 @@ export default function RegisterPage() {
         <link rel='icon' href='/baby-face-icon.png' />
       </Head>
       <div className='h-[100svh] flex flex-col justify-between overflow-hidden'>
-        <MenuNavbar />
+        <AuthMenuNavbar />
         <Register />
         <Footer />
       </div>

@@ -1,9 +1,18 @@
 import Head from 'next/head'
-import Footer from '../components/Footer'
-import MenuCard from '../components/MenuCard'
-import MenuNavbar from '../components/MenuNavbar'
 
-export default function MenuPage() {
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import AppMenuCard from '../components/AppMenuCard'
+import { useSession } from '@supabase/auth-helpers-react'
+import AuthMenuPage from './welcome'
+
+export default function menu() {
+  const session = useSession()
+
+  if (!session) {
+    return <AuthMenuPage />
+  }
+
   return (
     <div>
       <Head>
@@ -14,9 +23,9 @@ export default function MenuPage() {
         />
         <link rel='icon' href='/baby-face-icon.png' />
       </Head>
-      <div className='h-[100svh] flex flex-col justify-between'>
-        <MenuNavbar />
-        <MenuCard />
+      <div className='h-[100svh] flex flex-col justify-between overflow-hidden'>
+        <Navbar />
+        <AppMenuCard />
         <Footer />
       </div>
     </div>
