@@ -3,44 +3,52 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectFavoriteNames } from '../redux/selectors'
+import { setFavoriteNames } from '../redux/favoriteNamesSlice'
+import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 
-const FavNamecard = ({ getNewName, randomName }) => {
-  const favNames = [
-    'Amoura',
-    'Jackie',
-    'Neriah',
-    'Jean',
-    'Aleia',
-    'Rayla',
-    'Taj',
-    'Brandon',
-    'Alba',
-    'Sloane',
-    'Gunner',
-    'Alex',
-    'Adolfo',
-    'Celina',
-    'Guillermo',
-    'Abel',
-    'Dominic',
-    'Melodi',
-    'Mari',
-    'Castiel',
-    'Heath',
-    'Bobbi',
-    'Bayleigh',
-    'August',
-    'Sergio',
-    'Taylee',
-    'Cameran',
-    'Sakura',
-    'Brentley',
-    'Lawson',
-    'Meadow',
-    'Antonella',
-  ]
+const FavNamecard = () => {
+  const supabase = useSupabaseClient()
+  const user = useUser()
+  const dispatch = useDispatch()
+  const favoriteNames = useSelector(selectFavoriteNames)
 
-  const favList = favNames.map((name, i) => {
+  const getSavedNames = async () => {
+    try {
+      let { data, error, status } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+
+      dispatch(setFavoriteNames(data.saved_names))
+    } catch (error) {
+      alert(error)
+    }
+  }
+
+  useEffect(() => {
+    getSavedNames()
+  }, [])
+
+  const handleDelete = async (name) => {
+    try {
+      let { error } = await supabase.from('profiles').upsert({
+        id: user.id,
+        updated_at: new Date().toISOString(),
+        saved_names: [...favoriteNames.filter((el) => el !== name)],
+      })
+      if (error) throw error
+    } catch (error) {
+      alert(error)
+    } finally {
+      dispatch(setFavoriteNames(favoriteNames.filter((el) => el !== name)))
+    }
+  }
+
+  const favList = favoriteNames.map((name, i) => {
     return i === 0 ? (
       <li
         key={i}
@@ -50,7 +58,8 @@ const FavNamecard = ({ getNewName, randomName }) => {
         <FontAwesomeIcon
           icon={faTrashCan}
           size='1x'
-          className='opacity-75 group-hover:opacity-100'
+          className='opacity-75 group-hover:opacity-100 hover:cursor-pointer'
+          onClick={() => handleDelete(name)}
         />
       </li>
     ) : (
@@ -64,7 +73,8 @@ const FavNamecard = ({ getNewName, randomName }) => {
           <FontAwesomeIcon
             icon={faTrashCan}
             size='1x'
-            className='opacity-75 group-hover:opacity-100'
+            className='opacity-75 group-hover:opacity-100 hover:cursor-pointer'
+            onClick={() => handleDelete(name)}
           />
         </li>
       </>

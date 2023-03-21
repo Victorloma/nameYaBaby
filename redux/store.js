@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { nameApi } from './features/api/nameApi'
 import genderReducer from './genderSlice'
 import namecardReducer from './namecardSlice'
+import favoriteNamesReducer from './favoriteNamesSlice'
 import { profileApi } from './features/api/profileApi'
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     [profileApi.reducerPath]: profileApi.reducer,
     gender: genderReducer,
     namecard: namecardReducer,
+    favoriteNames: favoriteNamesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()

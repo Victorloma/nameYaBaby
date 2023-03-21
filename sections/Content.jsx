@@ -7,20 +7,24 @@ import { rotateIn } from '../utils/motion'
 import Namecard from '../components/Namecard'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { selectNamecard, selectGender } from '../redux/selectors'
+import {
+  selectNamecard,
+  selectGender,
+  selectFavoriteNames,
+} from '../redux/selectors'
 import { useGetNewNameQuery } from '../redux/features/api/nameApi'
 import { setShowNamecard } from '../redux/namecardSlice'
 import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react'
 import { useEffect } from 'react'
-import { useState } from 'react'
+import { setFavoriteNames } from '../redux/favoriteNamesSlice'
 
 const Content = () => {
   const dispatch = useDispatch()
   const showNamecard = useSelector(selectNamecard)
   const gender = useSelector(selectGender)
+  const favoriteNames = useSelector(selectFavoriteNames)
   const user = useUser()
   const supabase = useSupabaseClient()
-  const [savedNames, setSavedNames] = useState([])
 
   const { data: randomName, refetch } = useGetNewNameQuery(gender)
 
@@ -32,7 +36,7 @@ const Content = () => {
         .eq('id', user.id)
         .single()
 
-      setSavedNames(data.saved_names)
+      dispatch(setFavoriteNames(data.saved_names))
     } catch (error) {
       alert(error)
     }
@@ -48,7 +52,7 @@ const Content = () => {
         let { error } = await supabase.from('profiles').upsert({
           id: user.id,
           updated_at: new Date().toISOString(),
-          saved_names: [...savedNames, randomName],
+          saved_names: [...favoriteNames, randomName],
         })
         if (error) throw error
       } catch (error) {
@@ -70,7 +74,6 @@ const Content = () => {
       getNewName('no')
     }
   }
-
   return (
     <motion.div
       drag='x'

@@ -9,3 +9,8 @@ export const selectNamecard = createSelector(
   (state) => state.namecard.showNamecard,
   (namecard) => namecard
 )
+
+export const selectFavoriteNames = createSelector(
+  (state) => state.favoriteNames.favoriteNames,
+  (favoriteNames) => favoriteNames
+)
