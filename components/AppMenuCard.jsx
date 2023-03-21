@@ -24,7 +24,7 @@ const MenuCard = () => {
           </Link>
           <Link
             href='/favorites'
-            className='group flex items-center gap-4 text-white font-poppins text-2xl tracking-widest cursor-pointer shadow-lg border  border-b-0 border-opacity-30 border-slate-100 rounded-full px-10 py-3 hover:bg-white hover:bg-opacity-10'
+            className='group flex items-center gap-4 text-white font-poppins text-lg md:text-2xl tracking-widest cursor-pointer shadow-lg border  border-b-0 border-opacity-30 border-slate-100 rounded-full px-10 py-3 hover:bg-white hover:bg-opacity-10'
           >
             <FontAwesomeIcon
               icon={faStar}
@@ -36,7 +36,7 @@ const MenuCard = () => {
 
           <button
             onClick={() => logout()}
-            className='group flex items-center gap-4 text-white font-poppins text-2xl tracking-widest cursor-pointer shadow-lg border  border-b-0 border-opacity-30 border-slate-100 rounded-full px-10 py-3 hover:bg-white hover:bg-opacity-10'
+            className='group flex items-center gap-4 text-white font-poppins text-lg md:text-2xl tracking-widest cursor-pointer shadow-lg border  border-b-0 border-opacity-30 border-slate-100 rounded-full px-10 py-3 hover:bg-white hover:bg-opacity-10'
           >
             <FontAwesomeIcon
               icon={faRightFromBracket}

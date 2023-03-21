@@ -90,7 +90,7 @@ const FavNamecard = () => {
         >
           &times;
         </Link>
-        <ul className='text-white h-[100%] flex flex-col items-center gap-1 overflow-auto scrollbar-hide'>
+        <ul className='mt-10 text-white h-[100%] flex flex-col items-center gap-1 overflow-auto scrollbar-hide'>
           {favList}
         </ul>
       </div>
