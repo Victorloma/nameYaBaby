@@ -19,7 +19,7 @@ const Footer = () => (
             Victor Martinez
           </h4>
           <p className='font-normal text-[10px] sm:text-[14px] text-white opacity-80'>
-            Copyright © 2023 - 2024 Victor L. Martinez. All rights reserved.
+            Copyright © 2022 - 2023 Victor L. Martinez. All rights reserved.
           </p>
         </div>
       </div>
