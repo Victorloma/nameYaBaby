@@ -22,9 +22,17 @@ When building this app I've tried to follow the DRY (Don't Repeat Yourself) prin
 
 ## How to use the app:
 
-To use the app you first need to go to https://babynamer.netlify.app/, this will take you to the homepage where you will be asked to sign in, sign up or try the app out as a guest. Once you made your choice you'll be forwarded to the respective page. When you chose sign up it will ask you for your e-mail address and a password, when you click register this e-mail address and your hashed password will be saved in the users table of the Supabase database. When logging in this data will be checked with the data stored in the database. If you chose 'Try it out as a guest' you will be automatically logged in with predefined user credentials that are stored in a environmental variable.
-Once logged in you get access to the app and all its functionality. You can choose a gender specific filter or choose to search for all genders. If you can swipe left the name is discarded and another name will be suggested, when swiping right the name is accepted and stored in the favorite_names table in the database. Alternatively you can also click the cross to discard or the checkmark to like and save the name.
+To use the app you first need to go to https://babynamer.netlify.app/, this will take you to the homepage where you will be asked to sign in, sign up or try the app out as a guest.
+
+Once you made your choice you'll be forwarded to the respective page. When you chose sign up it will ask you for your e-mail address and a password, when you click register this e-mail address and your hashed password will be saved in the users table of the Supabase database. When logging in this data will be checked with the data stored in the database. If you chose 'Try it out as a guest' you will be automatically logged in with predefined user credentials that are stored in a environmental variable.
+
+Once logged in you get access to the app and all its functionality. You can choose a gender specific filter or choose to search for all genders. If you swipe left the name is discarded and another name will be suggested, when swiping right the name is accepted and stored in the favorite_names table in the database. Alternatively you can also click the cross to discard or the checkmark to like and save the name.
+
 When clicking on the three lines in the upper right corner you open a menu that gives you the option to see the favorite names or to log out. The favorite names page then queries your list of favorite names and displays them in a table, here you can also delete names you no longer want to have in your list by clicking the garbage can icon next to the name.
+
+If you click the 'Sign out' in previously mentioned menu, you will log out and the user session will be ended. Now you need to log to be able to use the app again.
+
+---
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
